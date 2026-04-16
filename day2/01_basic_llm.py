@@ -50,21 +50,21 @@ def main():
 # /*------------------------流式调用模型，获取回答----------------------*/
     # # 流式调用模型，获取回答
     # # 利用循环来处理模型的流式输出，实时获取模型的思考过程和工具调用信息
-    # for chunk in model.stream(prompt):
-    #     for block in chunk.content_blocks:
-    #         block_type = block.get("type")
-    #         if block["type"] == "reasoning":
-    #             reasoning = block.get("reasoning")
-    #             if reasoning:
-    #                 print(f"模型正在思考：{reasoning}")
-    #         elif block["type"] == "tool_call_chunk":
-    #             print(f"模型正在调用工具：{block}")
-    #         elif block["type"] == "text":
-    #             text = block.get("text")
-    #             if text:   
-    #                 print(f"模型输出文本：{text}")
-    #         else:
-    #             print(f"模型输出其他内容：{block}")
+    for chunk in model.stream(prompt):
+        for block in chunk.content_blocks:
+            block_type = block.get("type")
+            if block["type"] == "reasoning":
+                reasoning = block.get("reasoning")
+                if reasoning:
+                    print(f"模型正在思考：{reasoning}")
+            elif block["type"] == "tool_call_chunk":
+                print(f"模型正在调用工具：{block}")
+            elif block["type"] == "text":
+                text = block.get("text")
+                if text:   
+                    print(f"模型输出文本：{text}")
+            else:
+                print(f"模型输出其他内容：{block}")
 
 # /*----------------------batch调用模型，获取回答----------------------*/
     # batch调用模型，获取回答

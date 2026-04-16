@@ -23,16 +23,16 @@ def query_weather(city: str) -> str:
         return "城市名不能为空。"
 
     url = f"https://wttr.in/{city}"
-    params = {"format": "j1"}
+    params = {"format": "j1"} # 请求 JSON 格式的天气数据
     try:
         resp = requests.get(url, params=params, timeout=15)
-        resp.raise_for_status()
-        data: dict[str, Any] = resp.json()
+        resp.raise_for_status() # 如果响应状态码不是 200，会抛出 HTTPError
+        data: dict[str, Any] = resp.json() # 解析 JSON 响应
     except Exception as e:
         return f"天气查询失败：{e}"
 
     # 尽量稳健地从返回中取值
-    current = (data.get("current_condition") or [{}])[0]
+    current = (data.get("current_condition") or [{}])[0] # 获取当前天气信息，默认空字典避免 KeyError
     weather_desc = ((current.get("weatherDesc") or [{}])[0]).get("value", "未知")
     temp_c = current.get("temp_C", "未知")
     feels_like = current.get("FeelsLikeC", "未知")

@@ -30,6 +30,7 @@ def main() -> int:
     # )
     llm = create_My_model()
 
+    # 定义一个函数，接受当前消息状态，调用模型生成新的消息，并返回新的状态
     def call_model(state: MessagesState) -> MessagesState:
         ai_msg = llm.invoke(state["messages"])
         return {"messages": [ai_msg]}

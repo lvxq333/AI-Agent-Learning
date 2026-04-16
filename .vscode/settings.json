@@ -1,0 +1,6 @@
+{
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "python.condaPath": "/Users/haibolv/miniforge3/bin/conda",
+    "python.defaultInterpreterPath": "/Users/haibolv/miniforge3/envs/ai-agent-env/bin/python"
+}
